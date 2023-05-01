@@ -30,15 +30,19 @@ public class View {
     }
     
     public boolean gameEndView() {
-        System.out.println("게임을 다시 시작하려면 1, 종료하려면 2를 입력하세요.");
-        int inputNumber =  Integer.parseInt(scanner.nextLine());
-        if (!(new ValidatorUtils().isValidEndNumber(inputNumber))) {
-            throw new IllegalArgumentException("1 또는 2만 입력할 수 있습니다.");
-        }
+        printMSG(gameEndMSG);
+        int inputNumber = getInputNumber();
+        inputNumberValidator(inputNumber);
         if (inputNumber == 2) {
             return false;
         }
         return true;
+    }
+
+    private static void inputNumberValidator(int inputNumber) {
+        if (!(new ValidatorUtils().isValidEndNumber(inputNumber))) {
+            throw new IllegalArgumentException("1 또는 2만 입력할 수 있습니다.");
+        }
     }
 
     private int getInputNumber() {
